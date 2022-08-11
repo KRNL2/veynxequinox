@@ -1,0 +1,314 @@
+-- init
+local library = loadstring(game:HttpGet("https://pastebin.com/raw/qwdPKKDN"))()
+local venyx = library.new("Equinox Hub - FE ScriptHub v.1", 5013109572)
+
+-- themes
+local themes = {
+Background = Color3.fromRGB(24, 24, 24),
+Glow = Color3.fromRGB(0, 0, 0),
+Accent = Color3.fromRGB(10, 10, 10),
+LightContrast = Color3.fromRGB(20, 20, 20),
+DarkContrast = Color3.fromRGB(14, 14, 14),  
+TextColor = Color3.fromRGB(255, 255, 255)
+}
+
+-- home page 
+local page = venyx:addPage("Home", 5012540623)
+local section0 = page:addSection("Credits")
+
+section0:addButton("Made by Mr_BullFrog", function()
+
+end)
+
+section0:addButton("Huge thanks to Venyx for the UI Lib", function()
+
+end)
+
+section0:addButton("Click to copy discord invite", function()
+setclipboard(tostring('https://discord.gg/f26Vp8CzaZ'))
+end)
+
+local section0 = page:addSection("Last Updated")
+
+section0:addButton("8/10/2022", function()
+
+end)
+
+
+-- first page
+local page = venyx:addPage("Local", 5012544693)
+local section1 = page:addSection("Local/Local Player")
+local section2 = page:addSection("Utility")
+local section3 = page:addSection("Graphics")
+
+
+section1:addSlider("Walkspeed", 16, 500, 1000, function(s)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+section1:addSlider("Jump Power", 50, 500, 1000, function(e)
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = e
+end)
+
+section1:addSlider("Time", 14, 0, 24, function(p)
+game:GetService("Lighting").ClockTime = p
+end)
+
+section1:addSlider("Gravity", 196.2, 0, 500, function(o)
+game:GetService("Workspace").Gravity = o
+end)
+
+section1:addButton("Respawn", function()
+    game.Players.LocalPlayer.Character.Head:Destroy()
+    if game.Players.LocalPlayer.Character.Humanoid.Health < 5 then 
+    local deathmanok = game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").position
+    wait(1.5)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(deathmanok)
+end
+end)
+
+section1:addButton("Rejoin", function()
+	    local TeleportService = game:GetService("TeleportService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local Rejoin = coroutine.create(function()
+    local Success, ErrorMessage = pcall(function()
+        TeleportService:Teleport(game.PlaceId, LocalPlayer)
+    end)
+
+    if ErrorMessage and not Success then
+        warn(ErrorMessage)
+    end
+end)
+
+coroutine.resume(Rejoin)
+end)
+
+section1:addButton("Auto Rejoin", function()
+	    game:WaitForChild("CoreGui")
+game:WaitForChild("Players")
+
+print("REJOIN SCRIPT ENABLED")
+
+while true do wait()
+    wait(1)
+getgenv().rejoin = game:GetService("CoreGui").RobloxPromptGui.promptOverlay.ChildAdded:Connect(function(child)
+    if child.Name == 'ErrorPrompt' and child:FindFirstChild('MessageArea') and child.MessageArea:FindFirstChild("ErrorFrame") then
+        pcall(game:GetService("TeleportService"):Teleport(game.PlaceId))
+    end
+end)
+
+end
+end)
+
+section1:addButton("Join Smallest Server", function()
+      		local Http = game:GetService("HttpService")
+local TPS = game:GetService("TeleportService")
+local Api = "https://games.roblox.com/v1/games/"
+
+local _place = game.PlaceId
+local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
+function ListServers(cursor)
+   local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+   return Http:JSONDecode(Raw)
+end
+
+local Server, Next; repeat
+   local Servers = ListServers(Next)
+   Server = Servers.data[1]
+   Next = Servers.nextPageCursor
+until Server
+
+TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
+end)
+
+section1:addButton("Server Finder", function()
+loadstring(game:HttpGet("https://www.scriptblox.com/raw/Server-Browser_80", true))();
+end)
+
+section1:addButton("Noclip", function()
+local noclip = true char = game.Players.LocalPlayer.Character while true do if noclip == true then for _,v in pairs(char:children()) do pcall(function() if v.className == "Part" then v.CanCollide = false elseif v.ClassName == "Model" then v.Head.CanCollide = false end end) end end game:service("RunService").Stepped:wait() end
+end)
+
+section1:addButton("Anti-AFK", function()
+    repeat task.wait() until (game:IsLoaded());
+for i,v in pairs(getconnections(game:GetService('Players').LocalPlayer.Idled)) do
+    v:Disable();
+end;
+end)
+
+
+-- section 2 -- 
+
+section2:addButton("BTools", function()
+a = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+a.BinType = 2
+b = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+b.BinType = 3
+c = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+c.BinType = 4
+end)
+
+section2:addButton("Xray (X)", function()
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/KRNL2/newxray/main/op')))()
+end)
+
+section2:addButton("Anti Fling", function()
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/KRNL2/antifling/main/source')))()
+end)
+
+section2:addButton("Click TP", function()
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/KRNL2/ClickTp/main/tool')))()
+end)
+
+section2:addButton("Explorer", function()
+loadstring(game:HttpGetAsync("https://pastebin.com/raw/fPP8bZ8Z"))()
+end)
+
+section2:addButton("Infinite Jump", function()
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if InfiniteJumpEnabled then
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
+end)
+end)
+
+section2:addButton("ESP", function()
+      		loadstring(game:HttpGet("https://raw.githubusercontent.com/TheNuggetEater05/ekaMiffutSmodnaR/main/GlobalR6SkeletonESP.lua"))()
+
+shared.BoneESP_Settings = {
+    Circle_Visible = false,
+    Circle_Radius = 3,
+    BoneESP_Color = Color3.fromRGB(255,255,255)
+}
+end)
+
+section2:addButton("Invisibility (E)", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/KRNL2/Invisible32/main/new"))()
+    OrionLib:MakeNotification({
+	Name = "Loaded Invisibility!",
+	Content = "Press E to go visible/invisible",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+end)
+
+-- section 3 
+
+section3:addButton("FPS Booster", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/KRNL2/FPSBooster/main/xd"))()
+end)
+
+section3:addButton("Graphics Enhancer", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/KRNL2/Graphics-Enhancer/main/fe"))()
+end)
+
+
+
+-- second page
+local qwerty = venyx:addPage("Character", 5012544693)
+local lol = qwerty:addSection("Headless & Korblox")
+local lol1 = qwerty:addSection("Faces")
+local lol1 = qwerty:addSection("Beast Mode")
+local lol2 = qwerty:addSection("Bubble Trouble")
+local lol3 = qwerty:addSection("Glowing Eyes")
+
+
+lol:addButton("Headless (R15 & R6)", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Invooker11/Koblox-and-Headless/main/Headless", true))()
+end)
+
+lol:addButton("Korblox Right Leg (R15 Only)", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Invooker11/Koblox-and-Headless/main/Right%20Leg", true))()
+end)
+
+lol:addButton("Korblox Left Leg (R15 Only)", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Invooker11/Koblox-and-Headless/main/Left%20leg", true))()
+end)
+
+
+-- New section --
+lol1:addButton("Red (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://127959433"
+end)
+
+lol1:addButton("Green (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://2225757922"
+end)
+
+lol1:addButton("Purple (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://2606174048"
+end)
+
+lol1:addButton("Blue (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://209712379"
+end)
+
+
+-- New section 
+lol2:addButton("Purple (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://362047189"
+end)
+
+lol2:addButton("Green (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://380753459"
+end)
+
+lol2:addButton("Pink (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://19264782"
+end)
+
+lol2:addButton("Blue (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://330393309"
+end)
+
+
+-- New section 
+lol3:addButton("Yellow (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://416830979"
+end)
+
+lol3:addButton("Green (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://398676207"
+end)
+
+lol3:addButton("Red (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://179693472"
+end)
+
+
+-- last page
+local theme = venyx:addPage("Theme", 5012544693)
+local colors = theme:addSection("Colors")
+
+for theme, color in pairs(themes) do -- all in one theme changer, i know, im cool
+colors:addColorPicker(theme, color, function(color3)
+venyx:setTheme(theme, color3)
+end)
+end
+
+-- load
+venyx:SelectPage(venyx.pages[1], true) -- no default for more freedom
