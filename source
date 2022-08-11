@@ -128,14 +128,7 @@ loadstring(game:HttpGet("https://www.scriptblox.com/raw/Server-Browser_80", true
 end)
 
 section1:addButton("Noclip", function()
-local noclip = true char = game.Players.LocalPlayer.Character while true do if noclip == true then for _,v in pairs(char:children()) do pcall(function() if v.className == "Part" then v.CanCollide = false elseif v.ClassName == "Model" then v.Head.CanCollide = false end end) end end game:service("RunService").Stepped:wait() end
-end)
-
-section1:addButton("Anti-AFK", function()
-    repeat task.wait() until (game:IsLoaded());
-for i,v in pairs(getconnections(game:GetService('Players').LocalPlayer.Idled)) do
-    v:Disable();
-end;
+    	local noclip = true char = game.Players.LocalPlayer.Character while true do if noclip == true then for _,v in pairs(char:children()) do pcall(function() if v.className == "Part" then v.CanCollide = false elseif v.ClassName == "Model" then v.Head.CanCollide = false end end) end end game:service("RunService").Stepped:wait() end
 end)
 
 
@@ -167,6 +160,7 @@ loadstring(game:HttpGetAsync("https://pastebin.com/raw/fPP8bZ8Z"))()
 end)
 
 section2:addButton("Infinite Jump", function()
+local InfiniteJumpEnabled = true
 game:GetService("UserInputService").JumpRequest:connect(function()
 	if InfiniteJumpEnabled then
 		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
@@ -215,6 +209,8 @@ local lol2 = qwerty:addSection("Bubble Trouble")
 local lol3 = qwerty:addSection("Glowing Eyes")
 local lol4 = qwerty:addSection("Evil Eye")
 local lol5 = qwerty:addSection("Other Faces")
+local lol6 = qwerty:addSection("Non-Limited Faces")
+local Rainbow = qwerty:addSection("Rainbow Body Parts")
 
 
 lol:addButton("Headless (R15 & R6)", function()
@@ -387,6 +383,93 @@ lol5:addButton("Evil Skeptic (R15 & R6)", function()
     local chr = ply.Character
     chr.Head.face.Texture = "rbxassetid://110287983"
 end)
+
+-- New section 
+lol6:addButton("Mysterious (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://7132019"
+end)
+
+lol6:addButton("Sad Zombie (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://7131308"
+end)
+
+lol6:addButton("Anguished (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://8560912"
+end)
+
+lol6:addButton("Frightful (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://7699096"
+end)
+
+lol6:addButton("Aghast (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    chr.Head.face.Texture = "rbxassetid://629923753"
+end)
+
+Rainbow:addButton("Rainbow Head (R15 & R6)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    local Head = chr.Head
+    while wait(0.1) do 
+	Head.BrickColor = BrickColor.random() 
+end
+end)
+
+Rainbow:addButton("Rainbow Left Arm (R15 Only)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    local LeftUpperArm = chr.LeftUpperArm
+    while wait(0.1) do 
+	LeftUpperArm.BrickColor = BrickColor.random() 
+end
+end)
+
+Rainbow:addButton("Rainbow Right Arm (R15 Only)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    local RightUpperArm = chr.RightUpperArm
+    while wait(0.1) do 
+	RightUpperArm.BrickColor = BrickColor.random() 
+end
+end)
+
+Rainbow:addButton("Rainbow Torso (R15 Only)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    local UpperTorso = chr.UpperTorso
+    while wait(0.1) do 
+	UpperTorso.BrickColor = BrickColor.random() 
+end
+end)
+
+Rainbow:addButton("Rainbow Left Leg (R15 Only)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    local LeftUpperLeg = chr.LeftUpperLeg
+    while wait(0.1) do 
+	LeftUpperLeg.BrickColor = BrickColor.random() 
+end
+end)
+
+Rainbow:addButton("Rainbow Right Leg (R15 Only)", function()
+    local ply = game.Players.LocalPlayer
+    local chr = ply.Character
+    local RightUpperLeg = chr.RightUpperLeg
+    while wait(0.1) do 
+	RightUpperLeg.BrickColor = BrickColor.random() 
+end
+end)
+
+
 
 
 
